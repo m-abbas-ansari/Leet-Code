@@ -1,23 +1,31 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        # Iterate through nums to choose a number -> a[i]
-        # then do 2-sum for remaining nums array where target = 0 - a[i]
-        # 2 - sum: Make a dictionary where keys are the elements of nums array
+        # sort the nums array
+        # select 1st element in nums array, delete that element from nums
+        # using 2-pointers approach, perform 2-sum to find 2 elements which sum up to 0 - a.
         
         result = []
-        
-        while len(nums) != 0:
-            n = nums[0]
-            target = 0 - n
-            nums.remove(n)
-            d = {}
-            for j, p in enumerate(nums): # perform 2-sum for target
-                b = target - p
-                if b in d:
-                    res = [n,p,b]
-                    res.sort()
-                    if res not in result:
-                        result.append(res)
-                d[p] = j
-         
+        nums.sort()
+        i = 0
+        while i < len(nums):
+            a = nums[i]
+            target = 0 - a
+
+            low, high = i+1, len(nums)-1
+            while low < high:
+                r = nums[high] + nums[low]
+                if r > target:
+                    high -= 1
+                elif r < target:
+                    low += 1
+                else:
+                    result.append([a, nums[low], nums[high]])
+                    l = nums[low]
+                    low+=1
+                    while low < len(nums) and nums[low] == l:
+                        low+=1
+            i+= 1
+            while i < len(nums) and nums[i] == a:
+                i+= 1
+                
         return result
