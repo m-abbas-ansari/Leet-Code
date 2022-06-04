@@ -6,9 +6,9 @@ class Solution:
         
         result = []
         nums.sort()
-        i = 0
-        while i < len(nums):
-            a = nums[i]
+        for i, a in enumerate(nums):
+            if i > 0 and nums[i-1] == a:
+                continue
             target = 0 - a
 
             low, high = i+1, len(nums)-1
@@ -22,10 +22,7 @@ class Solution:
                     result.append([a, nums[low], nums[high]])
                     l = nums[low]
                     low+=1
-                    while low < len(nums) and nums[low] == l:
+                    while low < high and nums[low] == l:
                         low+=1
-            i+= 1
-            while i < len(nums) and nums[i] == a:
-                i+= 1
-                
+  
         return result
