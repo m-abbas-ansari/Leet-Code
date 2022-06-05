@@ -15,5 +15,6 @@ class Solution:
             elif height[l] > height[r]: # move right pointer
                 r -= 1
             else:
-                l+=1
+                while l<r and height[l] == height[r]:
+                    l+=1
         return maxVol
