@@ -1,5 +1,8 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
+        # Using a 2-pointer approach to find the height at which we can fill the in-between block with water. 
+        # We subtract away from total water when we find blocks with height>0
+        # If we find that a greater height of water can be filled, we find the differnce of height and calculate the extra water that can be added.
         tot_water = 0 
         l, r = 0, len(height) - 1
         h_water = 0
