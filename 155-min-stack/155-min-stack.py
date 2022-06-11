@@ -1,10 +1,10 @@
-
+from collections import deque
 class MinStack:
     # Using hint 1: Consider each node in the stack having a minimum value
     # Therefore for each value in stack, we will also store the min uptil the point that value was
     # pushed to the stack
     def __init__(self):
-        self.stack = []
+        self.stack = deque()
         self.min = 2**31 - 1
 
     def push(self, val: int) -> None:
